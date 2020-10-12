@@ -51,8 +51,8 @@
             this.ColorDialog_BrushColor = new System.Windows.Forms.ColorDialog();
             this.OpenFileDialog_Open = new System.Windows.Forms.OpenFileDialog();
             this.SaveFileDialog_Save = new System.Windows.Forms.SaveFileDialog();
-            this.Panel_Picture = new System.Windows.Forms.Panel();
-            this.PictureBox_Picture = new System.Windows.Forms.PictureBox();
+            this.panelPictureBox = new System.Windows.Forms.Panel();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.NoFocusTrackBar_Blue = new laba2.NoFocusTrackBar();
             this.NoFocusTrackBar_Red = new laba2.NoFocusTrackBar();
             this.NoFocusTrackBar_Green = new laba2.NoFocusTrackBar();
@@ -62,8 +62,8 @@
             this.MenuStrip_Menu.SuspendLayout();
             this.Panel_Tools.SuspendLayout();
             this.Panel_Saturation.SuspendLayout();
-            this.Panel_Picture.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Picture)).BeginInit();
+            this.panelPictureBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Blue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Red)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Green)).BeginInit();
@@ -78,7 +78,7 @@
             this.ToolStripMenuItem_OpenFile,
             this.ToolStripMenuItem_SaveFile});
             this.ToolStripMenuItem_File.Name = "ToolStripMenuItem_File";
-            this.ToolStripMenuItem_File.Size = new System.Drawing.Size(46, 26);
+            this.ToolStripMenuItem_File.Size = new System.Drawing.Size(46, 24);
             this.ToolStripMenuItem_File.Text = "File";
             // 
             // ToolStripMenuItem_OpenFile
@@ -101,7 +101,7 @@
             this.ToolStripMenuItem_File});
             this.MenuStrip_Menu.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip_Menu.Name = "MenuStrip_Menu";
-            this.MenuStrip_Menu.Size = new System.Drawing.Size(1356, 30);
+            this.MenuStrip_Menu.Size = new System.Drawing.Size(896, 28);
             this.MenuStrip_Menu.TabIndex = 25;
             this.MenuStrip_Menu.Text = "menuStrip1";
             // 
@@ -127,7 +127,7 @@
             this.Panel_Tools.Controls.Add(this.Label_Zoom);
             this.Panel_Tools.Location = new System.Drawing.Point(0, 32);
             this.Panel_Tools.Name = "Panel_Tools";
-            this.Panel_Tools.Size = new System.Drawing.Size(1356, 139);
+            this.Panel_Tools.Size = new System.Drawing.Size(896, 139);
             this.Panel_Tools.TabIndex = 26;
             // 
             // Panel_Saturation
@@ -285,22 +285,26 @@
             // 
             this.SaveFileDialog_Save.Filter = "jpg (*.jpg)|*.jpg|bmp (*.bmp)|*.bmp|png (*.png)|*.png";
             // 
-            // Panel_Picture
+            // panelPictureBox
             // 
-            this.Panel_Picture.AutoScroll = true;
-            this.Panel_Picture.Controls.Add(this.PictureBox_Picture);
-            this.Panel_Picture.Location = new System.Drawing.Point(0, 178);
-            this.Panel_Picture.Name = "Panel_Picture";
-            this.Panel_Picture.Size = new System.Drawing.Size(1356, 359);
-            this.Panel_Picture.TabIndex = 27;
+            this.panelPictureBox.AutoScroll = true;
+            this.panelPictureBox.Controls.Add(this.pictureBox);
+            this.panelPictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelPictureBox.Location = new System.Drawing.Point(0, 28);
+            this.panelPictureBox.Margin = new System.Windows.Forms.Padding(4);
+            this.panelPictureBox.Name = "panelPictureBox";
+            this.panelPictureBox.Size = new System.Drawing.Size(896, 515);
+            this.panelPictureBox.TabIndex = 27;
             // 
-            // PictureBox_Picture
+            // pictureBox
             // 
-            this.PictureBox_Picture.Location = new System.Drawing.Point(0, -1);
-            this.PictureBox_Picture.Name = "PictureBox_Picture";
-            this.PictureBox_Picture.Size = new System.Drawing.Size(1356, 360);
-            this.PictureBox_Picture.TabIndex = 0;
-            this.PictureBox_Picture.TabStop = false;
+            this.pictureBox.BackColor = System.Drawing.SystemColors.Control;
+            this.pictureBox.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox.Margin = new System.Windows.Forms.Padding(4);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(895, 511);
+            this.pictureBox.TabIndex = 7;
+            this.pictureBox.TabStop = false;
             // 
             // NoFocusTrackBar_Blue
             // 
@@ -353,8 +357,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1356, 543);
-            this.Controls.Add(this.Panel_Picture);
+            this.ClientSize = new System.Drawing.Size(896, 543);
+            this.Controls.Add(this.panelPictureBox);
             this.Controls.Add(this.Panel_Tools);
             this.Controls.Add(this.MenuStrip_Menu);
             this.Name = "Form_Main";
@@ -367,8 +371,8 @@
             this.Panel_Tools.PerformLayout();
             this.Panel_Saturation.ResumeLayout(false);
             this.Panel_Saturation.PerformLayout();
-            this.Panel_Picture.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Picture)).EndInit();
+            this.panelPictureBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Blue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Red)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Green)).EndInit();
@@ -411,8 +415,8 @@
         private System.Windows.Forms.ColorDialog ColorDialog_BrushColor;
         private System.Windows.Forms.OpenFileDialog OpenFileDialog_Open;
         private System.Windows.Forms.SaveFileDialog SaveFileDialog_Save;
-        private System.Windows.Forms.Panel Panel_Picture;
-        private System.Windows.Forms.PictureBox PictureBox_Picture;
+        private System.Windows.Forms.Panel panelPictureBox;
+        private System.Windows.Forms.PictureBox pictureBox;
     }
 }
 

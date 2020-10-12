@@ -62,10 +62,10 @@ namespace laba2
                 using (FileStream fs = new FileStream(OpenFileDialog_Open.FileName, FileMode.Open, FileAccess.Read))
                 {
                     ImageBuffer = Image.FromStream(fs);
-                    PictureBox_Picture.Image = Image.FromStream(fs);
+                    pictureBox.Image = Image.FromStream(fs);
                 }
-                PictureBox_Picture.Height = PictureBox_Picture.Image.Height;
-                PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
+                pictureBox.Height = pictureBox.Image.Height;
+                pictureBox.Width = pictureBox.Image.Width;
                 PictureBoxLocation();
             }
         }
@@ -73,15 +73,15 @@ namespace laba2
         {
             int _x = 0;
             int _y = 0;
-            if (Panel_Picture.Width > PictureBox_Picture.Width)
+            if (panelPictureBox.Width > pictureBox.Width)
             {
-                _x = (Panel_Picture.Width - PictureBox_Picture.Width) / 2;
+                _x = (panelPictureBox.Width - pictureBox.Width) / 2;
             }
-            if (Panel_Picture.Height > PictureBox_Picture.Height)
+            if (panelPictureBox.Height > pictureBox.Height)
             {
-                _y = (Panel_Picture.Height - PictureBox_Picture.Height) / 2;
+                _y = (panelPictureBox.Height - pictureBox.Height) / 2;
             }
-            PictureBox_Picture.Location = new Point(_x, _y);
+            pictureBox.Location = new Point(_x, _y);
         }
     }
     internal class NoFocusTrackBar : System.Windows.Forms.TrackBar
