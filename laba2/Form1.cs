@@ -31,12 +31,170 @@ namespace laba2
         {
             ComboBox_Zoom.TabStop = false;
         }
-
+        //добавить обработку исключений если не загружено изображение и исправить где-то тут утечку памяти, из-за которой при постоянном вращении потребление памяти возрастает до гигабайтов
         private void NoFocusTrackBar_Rotation_Scroll(object sender, EventArgs e)
         {
-            TextBox_Rotation.Text = NoFocusTrackBar_Rotation.Value.ToString();
-        }
+            Bitmap tmp = new Bitmap(ImageBuffer);
 
+            if (NoFocusTrackBar_Rotation.Value == 360)
+                NoFocusTrackBar_Rotation.Value = 0;
+            if (NoFocusTrackBar_Rotation.Value == -1)
+                NoFocusTrackBar_Rotation.Value = 359;
+            PictureBox_Picture.Image = RotateImageN(tmp, NoFocusTrackBar_Rotation.Value);
+            PictureBox_Picture.Height = PictureBox_Picture.Image.Height;
+            PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
+        }
+        private Point BoundingBoxDimensions(Bitmap img, float angle)
+        {
+            double[] x = new double[4];
+            x[0] = 0;
+            x[1] = img.Width;
+            x[2] = img.Width;
+            x[3] = 0;
+            double[] y = new double[4];
+            y[0] = img.Height;
+            y[1] = img.Height;
+            y[2] = 0;
+            y[3] = 0;
+            double xc = img.Width / 2;
+            double yc = img.Height / 2;
+            for(int i = 0; i < 4; i++)
+            {
+                Point p = RotatePoint(xc, yc, angle, new Point((int)x[i], (int)y[i]));
+                x[i] = p.X; y[i] = p.Y;
+            }
+            double min_x = x.Min();
+            double max_x = x.Max();
+            double min_y = y.Min();
+            double max_y = y.Max();
+            double height = max_y - min_y;
+            double width = max_x - min_x;
+            return new Point((int)Math.Ceiling(width), (int)Math.Ceiling(height));
+        }
+        Point RotatePoint(double cx, double cy, double angle, Point p)
+        {
+            double s = Math.Sin(angle*(Math.PI / 180.0));
+            double c = Math.Cos(angle*(Math.PI / 180.0));
+            p.X -= (int)cx;
+            p.Y -= (int)cy;
+            double xnew = p.X * c - p.Y * s;
+            double ynew = p.X * s + p.Y * c;
+            p.X = (int)(xnew + cx);
+            p.Y = (int)(ynew + cy);
+            return p;
+        }
+        Bitmap RotateImageN(Bitmap b, float Angle)
+        {
+            // The original bitmap needs to be drawn onto a new bitmap which will probably be bigger 
+            // because the corners of the original will move outside the original rectangle.
+            // An easy way (OK slightly 'brute force') is to calculate the new bounding box is to calculate the positions of the 
+            // corners after rotation and get the difference between the maximum and minimum x and y coordinates.
+            float wOver2 = b.Width / 2.0f;
+            float hOver2 = b.Height / 2.0f;
+            float radians = -(float)(Angle / 180.0 * Math.PI);
+            // Get the coordinates of the corners, taking the origin to be the centre of the bitmap.
+            PointF[] corners = new PointF[]{
+            new PointF(-wOver2, -hOver2),
+            new PointF(+wOver2, -hOver2),
+            new PointF(+wOver2, +hOver2),
+            new PointF(-wOver2, +hOver2)
+            };
+
+            for (int i = 0; i < 4; i++)
+            {
+                PointF p = corners[i];
+                PointF newP = new PointF((float)(p.X * Math.Cos(radians) - p.Y * Math.Sin(radians)), (float)(p.X * Math.Sin(radians) + p.Y * Math.Cos(radians)));
+                corners[i] = newP;
+            }
+
+            // Find the min and max x and y coordinates.
+            float minX = corners[0].X;
+            float maxX = minX;
+            float minY = corners[0].Y;
+            float maxY = minY;
+            for (int i = 1; i < 4; i++)
+            {
+                PointF p = corners[i];
+                minX = Math.Min(minX, p.X);
+                maxX = Math.Max(maxX, p.X);
+                minY = Math.Min(minY, p.Y);
+                maxY = Math.Max(maxY, p.Y);
+            }
+
+            // Get the size of the new bitmap.
+            SizeF newSize = new SizeF(maxX - minX, maxY - minY);
+            // ...and create it.
+            Bitmap returnBitmap = new Bitmap((int)Math.Ceiling(newSize.Width), (int)Math.Ceiling(newSize.Height));
+            // Now draw the old bitmap on it.
+            using (Graphics g = Graphics.FromImage(returnBitmap))
+            {
+                g.TranslateTransform(newSize.Width / 2.0f, newSize.Height / 2.0f);
+                g.RotateTransform(Angle);
+                g.TranslateTransform(-b.Width / 2.0f, -b.Height / 2.0f);
+
+                g.DrawImage(b, 0, 0);
+            }
+
+            return returnBitmap;
+        }
+        private Bitmap RotateImage(Bitmap rotateMe, float angle) //209
+        {
+            //First, re-center the image in a larger image that has a margin/frame
+            //to compensate for the rotated image's increased size
+            Point dimensions = BoundingBoxDimensions(rotateMe, angle);
+            var bmp = new Bitmap(dimensions.X, dimensions.Y);
+
+            using (Graphics g = Graphics.FromImage(bmp))
+                g.DrawImageUnscaled(rotateMe, (dimensions.X-rotateMe.Width)/2, (dimensions.Y - rotateMe.Height) / 2, bmp.Width, bmp.Height);
+
+            bmp.Save("moved.png");
+            rotateMe = bmp;
+
+            //Now, actually rotate the image
+            Bitmap rotatedImage = new Bitmap(rotateMe.Width, rotateMe.Height);
+
+            using (Graphics g = Graphics.FromImage(rotatedImage))
+            {
+                g.TranslateTransform(rotateMe.Width / 2, rotateMe.Height / 2);   //set the rotation point as the center into the matrix
+                g.RotateTransform(angle);                                        //rotate
+                g.TranslateTransform(-rotateMe.Width / 2, -rotateMe.Height / 2); //restore rotation point into the matrix
+                g.DrawImage(ImageBuffer, new Point(0, 0));                          //draw the image on the new bitmap
+            }
+            //rotatedImage.Dispose();
+            bmp.Dispose();
+            rotatedImage.Save("rotated.png");
+            return rotatedImage;
+        }
+        /*public static Image RotateImage(Image img, float rotationAngle)
+        {
+            //create an empty Bitmap image
+
+            Bitmap bmp = new Bitmap(2000, 2000);
+            bmp.SetResolution(img.HorizontalResolution, img.VerticalResolution);
+            //turn the Bitmap into a Graphics object
+            Graphics gfx = Graphics.FromImage(bmp);
+
+            //now we set the rotation point to the center of our image
+            gfx.TranslateTransform((float)bmp.Width / 2, (float)bmp.Height / 2);
+
+            //now rotate the image
+            gfx.RotateTransform(rotationAngle);
+
+            gfx.TranslateTransform(-(float)bmp.Width / 2, -(float)bmp.Height / 2);
+
+            //set the InterpolationMode to HighQualityBicubic so to ensure a high
+            //quality image once it is transformed to the specified size
+            gfx.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+
+            //now draw our new image onto the graphics object
+            gfx.DrawImage(img, new Point(0, 0));
+
+            //dispose of our Graphics object
+            gfx.Dispose();
+
+            //return the image
+            return bmp;
+        }*/
         private void NoFocusTrackBar_Red_Scroll(object sender, EventArgs e)
         {
 

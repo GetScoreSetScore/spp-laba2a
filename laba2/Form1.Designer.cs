@@ -44,7 +44,6 @@
             this.Button_Bigger = new System.Windows.Forms.Button();
             this.Button_Color = new System.Windows.Forms.Button();
             this.Button_Draw = new System.Windows.Forms.Button();
-            this.TextBox_Rotation = new System.Windows.Forms.TextBox();
             this.Label_Rotation = new System.Windows.Forms.Label();
             this.ComboBox_Zoom = new System.Windows.Forms.ComboBox();
             this.Label_Zoom = new System.Windows.Forms.Label();
@@ -121,7 +120,6 @@
             this.Panel_Tools.Controls.Add(this.Button_Bigger);
             this.Panel_Tools.Controls.Add(this.Button_Color);
             this.Panel_Tools.Controls.Add(this.Button_Draw);
-            this.Panel_Tools.Controls.Add(this.TextBox_Rotation);
             this.Panel_Tools.Controls.Add(this.Label_Rotation);
             this.Panel_Tools.Controls.Add(this.ComboBox_Zoom);
             this.Panel_Tools.Controls.Add(this.Label_Zoom);
@@ -234,14 +232,6 @@
             this.Button_Draw.Text = "change to brush image";
             this.Button_Draw.UseVisualStyleBackColor = true;
             // 
-            // TextBox_Rotation
-            // 
-            this.TextBox_Rotation.Location = new System.Drawing.Point(178, 91);
-            this.TextBox_Rotation.Name = "TextBox_Rotation";
-            this.TextBox_Rotation.Size = new System.Drawing.Size(100, 22);
-            this.TextBox_Rotation.TabIndex = 4;
-            this.TextBox_Rotation.Text = "0";
-            // 
             // Label_Rotation
             // 
             this.Label_Rotation.AutoSize = true;
@@ -339,7 +329,8 @@
             // NoFocusTrackBar_Rotation
             // 
             this.NoFocusTrackBar_Rotation.Location = new System.Drawing.Point(178, 29);
-            this.NoFocusTrackBar_Rotation.Maximum = 360;
+            this.NoFocusTrackBar_Rotation.Maximum = 361;
+            this.NoFocusTrackBar_Rotation.Minimum = -1;
             this.NoFocusTrackBar_Rotation.Name = "NoFocusTrackBar_Rotation";
             this.NoFocusTrackBar_Rotation.Size = new System.Drawing.Size(104, 56);
             this.NoFocusTrackBar_Rotation.TabIndex = 6;
@@ -390,7 +381,6 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_SaveFile;
         private System.Windows.Forms.MenuStrip MenuStrip_Menu;
         private System.Windows.Forms.Panel Panel_Tools;
-        private System.Windows.Forms.TextBox TextBox_Rotation;
         private System.Windows.Forms.Label Label_Rotation;
         private NoFocusTrackBar NoFocusTrackBar_Rotation;
         private System.Windows.Forms.Panel Panel_Saturation;
