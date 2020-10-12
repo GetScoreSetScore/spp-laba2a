@@ -287,6 +287,9 @@
             // 
             // Panel_Picture
             // 
+            this.Panel_Picture.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Panel_Picture.AutoScroll = true;
             this.Panel_Picture.Controls.Add(this.PictureBox_Picture);
             this.Panel_Picture.Location = new System.Drawing.Point(0, 178);
