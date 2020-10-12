@@ -69,6 +69,20 @@ namespace laba2
                 PictureBoxLocation();
             }
         }
+        private void PictureBoxLocation()
+        {
+            int _x = 0;
+            int _y = 0;
+            if (Panel_Picture.Width > PictureBox_Picture.Width)
+            {
+                _x = (Panel_Picture.Width - PictureBox_Picture.Width) / 2;
+            }
+            if (Panel_Picture.Height > PictureBox_Picture.Height)
+            {
+                _y = (Panel_Picture.Height - PictureBox_Picture.Height) / 2;
+            }
+            PictureBox_Picture.Location = new Point(_x, _y);
+        }
     }
     internal class NoFocusTrackBar : System.Windows.Forms.TrackBar
     {
