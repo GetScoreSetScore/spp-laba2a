@@ -244,7 +244,8 @@ namespace laba2
 
         private void Button_Apply_Click(object sender, EventArgs e)
         {
-            ImageBuffer = PictureBox_Picture.Image;
+            //ImageBuffer.Dispose();
+            ImageBuffer = (Image)PictureBox_Picture.Image.Clone();
             ResetControls();
 
         }
@@ -344,6 +345,82 @@ namespace laba2
                 CurrentColor = ColorDialog_BrushColor.Color;
                 Panel_ColorDisplay.BackColor = CurrentColor;
             }
+        }
+
+        private void NoFocusTrackBar_Contrast_Scroll(object sender, EventArgs e)
+        {
+            ColorMatrix matrix = new ColorMatrix();
+            float c = NoFocusTrackBar_Contrast.Value / 100f;
+            matrix.Matrix00 = matrix.Matrix11 = matrix.Matrix22 = c;
+            matrix.Matrix40 = matrix.Matrix41 = matrix.Matrix42 = (1-c)/2;
+
+            Bitmap tmp = new Bitmap(ImageBuffer);
+            PictureBox_Picture.Image.Dispose();
+            PictureBox_Picture.Image = TransformColor(tmp,matrix);
+            PictureBox_Picture.Height = PictureBox_Picture.Image.Height;
+            PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
+        }
+        Bitmap TransformColor(Bitmap source, ColorMatrix matrix)
+        {
+            ImageAttributes imageAttributes = new ImageAttributes();
+            imageAttributes.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
+            Graphics g = Graphics.FromImage(source);
+            g.DrawImage(source, new Rectangle(0, 0, source.Width, source.Height), 0, 0,
+                source.Width, source.Height, GraphicsUnit.Pixel, imageAttributes);
+            g.Dispose();
+            imageAttributes.Dispose();
+            //dispose g and?
+            return source;
+        }
+
+        private void NoFocusTrackBar_Brightness_Scroll(object sender, EventArgs e)
+        {
+            ColorMatrix matrix = new ColorMatrix();
+            float b = NoFocusTrackBar_Brightness.Value / 100f;
+            matrix.Matrix40 = matrix.Matrix41 = matrix.Matrix42 = b;
+
+            Bitmap tmp = new Bitmap(ImageBuffer);
+            PictureBox_Picture.Image.Dispose();
+            PictureBox_Picture.Image = TransformColor(tmp, matrix);
+            PictureBox_Picture.Height = PictureBox_Picture.Image.Height;
+            PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
+        }
+
+        private void NoFocusTrackBar_Saturation_Scroll(object sender, EventArgs e)
+        {
+            float rwgt = 0.3086f;
+            float gwgt = 0.6094f;
+            float bwgt = 0.0820f;
+            float rs = NoFocusTrackBar_Red.Value/100f;
+            float gs = NoFocusTrackBar_Green.Value/100f;
+            float bs = NoFocusTrackBar_Blue.Value/100f;
+            float s = rs + gs + bs;
+            float olds = s;
+            if (s > 1.0)
+            { // tune this
+                rs /= s;
+                gs /= s;
+                bs /= s;
+                s = 1;
+            }
+            else olds = 1;
+            ColorMatrix matrix = new ColorMatrix();
+            matrix.Matrix00= ((float)(1.0 - s) * rwgt + rs)*olds;
+            matrix.Matrix01 = ((float)(1.0 - s) * rwgt)*olds;
+            matrix.Matrix02 = ((float)(1.0 - s) * rwgt)*olds;
+            matrix.Matrix10 = ((float)(1.0 - s) * gwgt)*olds;
+            matrix.Matrix11 = ((float)(1.0 - s) * gwgt + gs)*olds;
+            matrix.Matrix12 = ((float)(1.0 - s) * gwgt)*olds;
+            matrix.Matrix20 = ((float)(1.0 - s) * bwgt)*olds;
+            matrix.Matrix21 = ((float)(1.0 - s) * bwgt)*olds;
+            matrix.Matrix22 = ((float)(1.0 - s) * bwgt + bs)*olds;
+
+            Bitmap tmp = new Bitmap(ImageBuffer);
+            PictureBox_Picture.Image.Dispose();
+            PictureBox_Picture.Image = TransformColor(tmp, matrix);
+            PictureBox_Picture.Height = PictureBox_Picture.Image.Height;
+            PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
         }
     }
     internal class NoFocusTrackBar : System.Windows.Forms.TrackBar

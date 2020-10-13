@@ -111,7 +111,7 @@
             this.ToolStripMenuItem_File});
             this.MenuStrip_Menu.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip_Menu.Name = "MenuStrip_Menu";
-            this.MenuStrip_Menu.Size = new System.Drawing.Size(1356, 28);
+            this.MenuStrip_Menu.Size = new System.Drawing.Size(1356, 30);
             this.MenuStrip_Menu.TabIndex = 25;
             this.MenuStrip_Menu.Text = "menuStrip1";
             // 
@@ -343,33 +343,42 @@
             // NoFocusTrackBar_Blue
             // 
             this.NoFocusTrackBar_Blue.Location = new System.Drawing.Point(218, 49);
+            this.NoFocusTrackBar_Blue.Maximum = 200;
             this.NoFocusTrackBar_Blue.Name = "NoFocusTrackBar_Blue";
             this.NoFocusTrackBar_Blue.Size = new System.Drawing.Size(104, 56);
             this.NoFocusTrackBar_Blue.TabIndex = 23;
-            this.NoFocusTrackBar_Blue.Scroll += new System.EventHandler(this.NoFocusTrackBar_Blue_Scroll);
+            this.NoFocusTrackBar_Blue.Value = 100;
+            this.NoFocusTrackBar_Blue.Scroll += new System.EventHandler(this.NoFocusTrackBar_Saturation_Scroll);
             // 
             // NoFocusTrackBar_Red
             // 
             this.NoFocusTrackBar_Red.Location = new System.Drawing.Point(3, 49);
+            this.NoFocusTrackBar_Red.Maximum = 200;
             this.NoFocusTrackBar_Red.Name = "NoFocusTrackBar_Red";
             this.NoFocusTrackBar_Red.Size = new System.Drawing.Size(104, 56);
             this.NoFocusTrackBar_Red.TabIndex = 21;
-            this.NoFocusTrackBar_Red.Scroll += new System.EventHandler(this.NoFocusTrackBar_Red_Scroll);
+            this.NoFocusTrackBar_Red.Value = 100;
+            this.NoFocusTrackBar_Red.Scroll += new System.EventHandler(this.NoFocusTrackBar_Saturation_Scroll);
             // 
             // NoFocusTrackBar_Green
             // 
             this.NoFocusTrackBar_Green.Location = new System.Drawing.Point(108, 49);
+            this.NoFocusTrackBar_Green.Maximum = 200;
             this.NoFocusTrackBar_Green.Name = "NoFocusTrackBar_Green";
             this.NoFocusTrackBar_Green.Size = new System.Drawing.Size(104, 56);
             this.NoFocusTrackBar_Green.TabIndex = 22;
-            this.NoFocusTrackBar_Green.Scroll += new System.EventHandler(this.NoFocusTrackBar_Green_Scroll);
+            this.NoFocusTrackBar_Green.Value = 100;
+            this.NoFocusTrackBar_Green.Scroll += new System.EventHandler(this.NoFocusTrackBar_Saturation_Scroll);
             // 
             // NoFocusTrackBar_Brightness
             // 
             this.NoFocusTrackBar_Brightness.Location = new System.Drawing.Point(904, 49);
+            this.NoFocusTrackBar_Brightness.Maximum = 100;
+            this.NoFocusTrackBar_Brightness.Minimum = -100;
             this.NoFocusTrackBar_Brightness.Name = "NoFocusTrackBar_Brightness";
             this.NoFocusTrackBar_Brightness.Size = new System.Drawing.Size(104, 56);
             this.NoFocusTrackBar_Brightness.TabIndex = 20;
+            this.NoFocusTrackBar_Brightness.Scroll += new System.EventHandler(this.NoFocusTrackBar_Brightness_Scroll);
             // 
             // NoFocusTrackBar_Rotation
             // 
@@ -385,9 +394,12 @@
             // NoFocusTrackBar_Contrast
             // 
             this.NoFocusTrackBar_Contrast.Location = new System.Drawing.Point(748, 49);
+            this.NoFocusTrackBar_Contrast.Maximum = 200;
             this.NoFocusTrackBar_Contrast.Name = "NoFocusTrackBar_Contrast";
             this.NoFocusTrackBar_Contrast.Size = new System.Drawing.Size(104, 56);
             this.NoFocusTrackBar_Contrast.TabIndex = 19;
+            this.NoFocusTrackBar_Contrast.Value = 100;
+            this.NoFocusTrackBar_Contrast.Scroll += new System.EventHandler(this.NoFocusTrackBar_Contrast_Scroll);
             // 
             // NumericUpDown_PenWidth
             // 
