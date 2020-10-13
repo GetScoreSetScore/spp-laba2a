@@ -61,6 +61,9 @@
             this.NoFocusTrackBar_Brightness = new laba2.NoFocusTrackBar();
             this.NoFocusTrackBar_Rotation = new laba2.NoFocusTrackBar();
             this.NoFocusTrackBar_Contrast = new laba2.NoFocusTrackBar();
+            this.NumericUpDown_PenWidth = new System.Windows.Forms.NumericUpDown();
+            this.Label_Pen = new System.Windows.Forms.Label();
+            this.Panel_ColorDisplay = new System.Windows.Forms.Panel();
             this.MenuStrip_Menu.SuspendLayout();
             this.Panel_Tools.SuspendLayout();
             this.Panel_Saturation.SuspendLayout();
@@ -74,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Brightness)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Rotation)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Contrast)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown_PenWidth)).BeginInit();
             this.SuspendLayout();
             // 
             // ToolStripMenuItem_File
@@ -117,6 +121,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Panel_Tools.BackColor = System.Drawing.SystemColors.ControlLight;
             this.Panel_Tools.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Panel_Tools.Controls.Add(this.Panel_ColorDisplay);
+            this.Panel_Tools.Controls.Add(this.Label_Pen);
+            this.Panel_Tools.Controls.Add(this.NumericUpDown_PenWidth);
             this.Panel_Tools.Controls.Add(this.Button_Apply);
             this.Panel_Tools.Controls.Add(this.Label_Height);
             this.Panel_Tools.Controls.Add(this.Label_Width);
@@ -231,6 +238,7 @@
             this.Button_Color.TabIndex = 8;
             this.Button_Color.Text = "Select color";
             this.Button_Color.UseVisualStyleBackColor = true;
+            this.Button_Color.Click += new System.EventHandler(this.Button_Color_Click);
             // 
             // Button_Draw
             // 
@@ -240,6 +248,7 @@
             this.Button_Draw.TabIndex = 7;
             this.Button_Draw.Text = "change to brush image";
             this.Button_Draw.UseVisualStyleBackColor = true;
+            this.Button_Draw.Click += new System.EventHandler(this.Button_Draw_Click);
             // 
             // Label_Rotation
             // 
@@ -288,6 +297,9 @@
             this.PictureBox_Picture.Size = new System.Drawing.Size(1356, 360);
             this.PictureBox_Picture.TabIndex = 0;
             this.PictureBox_Picture.TabStop = false;
+            this.PictureBox_Picture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_Picture_MouseDown);
+            this.PictureBox_Picture.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PictureBox_Picture_MouseMove);
+            this.PictureBox_Picture.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PictureBox_Picture_MouseUp);
             // 
             // Button_Apply
             // 
@@ -377,6 +389,40 @@
             this.NoFocusTrackBar_Contrast.Size = new System.Drawing.Size(104, 56);
             this.NoFocusTrackBar_Contrast.TabIndex = 19;
             // 
+            // NumericUpDown_PenWidth
+            // 
+            this.NumericUpDown_PenWidth.Location = new System.Drawing.Point(196, 112);
+            this.NumericUpDown_PenWidth.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NumericUpDown_PenWidth.Name = "NumericUpDown_PenWidth";
+            this.NumericUpDown_PenWidth.Size = new System.Drawing.Size(94, 22);
+            this.NumericUpDown_PenWidth.TabIndex = 30;
+            this.NumericUpDown_PenWidth.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // Label_Pen
+            // 
+            this.Label_Pen.AutoSize = true;
+            this.Label_Pen.Location = new System.Drawing.Point(202, 88);
+            this.Label_Pen.Name = "Label_Pen";
+            this.Label_Pen.Size = new System.Drawing.Size(69, 17);
+            this.Label_Pen.TabIndex = 31;
+            this.Label_Pen.Text = "Pen width";
+            // 
+            // Panel_ColorDisplay
+            // 
+            this.Panel_ColorDisplay.BackColor = System.Drawing.SystemColors.MenuText;
+            this.Panel_ColorDisplay.Location = new System.Drawing.Point(290, 49);
+            this.Panel_ColorDisplay.Name = "Panel_ColorDisplay";
+            this.Panel_ColorDisplay.Size = new System.Drawing.Size(29, 23);
+            this.Panel_ColorDisplay.TabIndex = 32;
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -405,6 +451,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Brightness)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Rotation)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Contrast)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown_PenWidth)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -445,6 +492,9 @@
         private NoFocusTrackBar NoFocusTrackBar_Width;
         private System.Windows.Forms.Button Button_Apply;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_SaveAs;
+        private System.Windows.Forms.Label Label_Pen;
+        private System.Windows.Forms.NumericUpDown NumericUpDown_PenWidth;
+        private System.Windows.Forms.Panel Panel_ColorDisplay;
     }
 }
 

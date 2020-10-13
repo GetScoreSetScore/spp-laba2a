@@ -16,11 +16,13 @@ namespace laba2
     public partial class Form_Main : Form
     {
         Image ImageBuffer;
+        Color CurrentColor = Color.Black;
+        List<Point> DrawingNodes = new List<Point>();
+        bool IsDrawing = false;
         public Form_Main()
         {
             InitializeComponent();
         }
-        int scale = 100;
         private void ComboBox_Zoom_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
@@ -246,6 +248,7 @@ namespace laba2
             NoFocusTrackBar_Rotation.Value = 0;
             NoFocusTrackBar_Height.Value = 100;
             NoFocusTrackBar_Width.Value = 100;
+            IsDrawing = false;
             //потом сюда добавить трекбары для остальных трекбаров
         }
         Bitmap ResizeImage(Bitmap source, Size NewSize)
@@ -280,6 +283,58 @@ namespace laba2
             }
             OpenFileDialog_Open.FileName = SaveFileDialog_Save.FileName;
             ResetControls();
+        }
+
+        private void PictureBox_Picture_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (IsDrawing)
+            {
+                //IntPtr hCursor = LoadCursorFromFile("cur1046.cur");
+                //Cursor cursor = new Cursor(hCursor);
+                //Cursor = cursor;
+                if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
+                {
+                    DrawingNodes.Add(e.Location);
+                    using (Graphics grp = Graphics.FromImage(PictureBox_Picture.Image))
+                    {
+                        if (DrawingNodes.Count > 1)
+                            grp.DrawLines(new Pen(CurrentColor, (float)NumericUpDown_PenWidth.Value), DrawingNodes.ToArray());
+                    }
+                    //originalImage = pictureBox.Image;
+                    PictureBox_Picture.Refresh();
+                    PictureBox_Picture.Invalidate();
+                }
+            }
+        }
+
+        private void PictureBox_Picture_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (IsDrawing && (e.Button & MouseButtons.Left) == MouseButtons.Left)
+            {
+                DrawingNodes.Add(e.Location);
+            }
+        }
+
+        private void PictureBox_Picture_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (IsDrawing)
+            {
+                DrawingNodes.Clear();
+            }
+        }
+
+        private void Button_Draw_Click(object sender, EventArgs e)
+        {
+            IsDrawing = !IsDrawing;
+        }
+
+        private void Button_Color_Click(object sender, EventArgs e)
+        {
+            if (ColorDialog_BrushColor.ShowDialog() == DialogResult.OK)
+            {
+                CurrentColor = ColorDialog_BrushColor.Color;
+                Panel_ColorDisplay.BackColor = CurrentColor;
+            }
         }
     }
     internal class NoFocusTrackBar : System.Windows.Forms.TrackBar
