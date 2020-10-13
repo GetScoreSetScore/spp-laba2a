@@ -34,14 +34,19 @@ namespace laba2
         private void NoFocusTrackBar_Rotation_Scroll(object sender, EventArgs e)
         {
             Bitmap tmp = new Bitmap(ImageBuffer);
-
+            
             if (NoFocusTrackBar_Rotation.Value == 360)
                 NoFocusTrackBar_Rotation.Value = 0;
             if (NoFocusTrackBar_Rotation.Value == -1)
                 NoFocusTrackBar_Rotation.Value = 359;
-            PictureBox_Picture.Image = RotateImageN(tmp, NoFocusTrackBar_Rotation.Value);
+            Bitmap btm = RotateImageN(tmp, NoFocusTrackBar_Rotation.Value);
+            PictureBox_Picture.Image.Dispose();
+            PictureBox_Picture.Image = btm;
+            //btm.Dispose();
+            //PictureBox_Picture.Image = RotateImageN(tmp, NoFocusTrackBar_Rotation.Value);
             PictureBox_Picture.Height = PictureBox_Picture.Image.Height;
             PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
+            tmp.Dispose();
         }
         private Point BoundingBoxDimensions(Bitmap img, float angle)
         {
@@ -264,12 +269,15 @@ namespace laba2
                 gr_dest.PixelOffsetMode = PixelOffsetMode.HighQuality;
                 gr_dest.DrawImage(bm_source, 0, 0, bm_dest.Width, bm_dest.Height);
             }
+            bm_source.Dispose();
             return bm_dest;
         }
         private void NoFocusTrackBar_Size_Scroll(object sender, EventArgs e)
         {
             Bitmap tmp = new Bitmap(ImageBuffer);
+            PictureBox_Picture.Image.Dispose();
             PictureBox_Picture.Image = ResizeImage(tmp, new Size(ImageBuffer.Width*NoFocusTrackBar_Width.Value/100, ImageBuffer.Height*NoFocusTrackBar_Height.Value/100));
+            tmp.Dispose();
             PictureBox_Picture.Height = PictureBox_Picture.Image.Height;
             PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
         }
@@ -299,7 +307,8 @@ namespace laba2
                     {
                         if (DrawingNodes.Count > 1)
                             grp.DrawLines(new Pen(CurrentColor, (float)NumericUpDown_PenWidth.Value), DrawingNodes.ToArray());
-                    }
+                    } 
+                    // 4 - яркость, 
                     //originalImage = pictureBox.Image;
                     PictureBox_Picture.Refresh();
                     PictureBox_Picture.Invalidate();
