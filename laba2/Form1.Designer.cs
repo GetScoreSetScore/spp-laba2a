@@ -64,6 +64,14 @@
             this.NumericUpDown_PenWidth = new System.Windows.Forms.NumericUpDown();
             this.Label_Pen = new System.Windows.Forms.Label();
             this.Panel_ColorDisplay = new System.Windows.Forms.Panel();
+            this.Label_RotationValue = new System.Windows.Forms.Label();
+            this.Label_WidthValue = new System.Windows.Forms.Label();
+            this.Label_HeightValue = new System.Windows.Forms.Label();
+            this.Label_ContrastValue = new System.Windows.Forms.Label();
+            this.Label_BrightnessValue = new System.Windows.Forms.Label();
+            this.Label_RedValue = new System.Windows.Forms.Label();
+            this.Label_GreenValue = new System.Windows.Forms.Label();
+            this.Label_BlueValue = new System.Windows.Forms.Label();
             this.MenuStrip_Menu.SuspendLayout();
             this.Panel_Tools.SuspendLayout();
             this.Panel_Saturation.SuspendLayout();
@@ -111,7 +119,7 @@
             this.ToolStripMenuItem_File});
             this.MenuStrip_Menu.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip_Menu.Name = "MenuStrip_Menu";
-            this.MenuStrip_Menu.Size = new System.Drawing.Size(1356, 30);
+            this.MenuStrip_Menu.Size = new System.Drawing.Size(1356, 28);
             this.MenuStrip_Menu.TabIndex = 25;
             this.MenuStrip_Menu.Text = "menuStrip1";
             // 
@@ -121,6 +129,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Panel_Tools.BackColor = System.Drawing.SystemColors.ControlLight;
             this.Panel_Tools.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Panel_Tools.Controls.Add(this.Label_BrightnessValue);
+            this.Panel_Tools.Controls.Add(this.Label_ContrastValue);
+            this.Panel_Tools.Controls.Add(this.Label_HeightValue);
+            this.Panel_Tools.Controls.Add(this.Label_WidthValue);
+            this.Panel_Tools.Controls.Add(this.Label_RotationValue);
             this.Panel_Tools.Controls.Add(this.Panel_ColorDisplay);
             this.Panel_Tools.Controls.Add(this.Label_Pen);
             this.Panel_Tools.Controls.Add(this.NumericUpDown_PenWidth);
@@ -139,6 +152,7 @@
             this.Panel_Tools.Controls.Add(this.Button_Draw);
             this.Panel_Tools.Controls.Add(this.Label_Rotation);
             this.Panel_Tools.Controls.Add(this.Label_Zoom);
+            this.Panel_Tools.Enabled = false;
             this.Panel_Tools.Location = new System.Drawing.Point(0, 32);
             this.Panel_Tools.Name = "Panel_Tools";
             this.Panel_Tools.Size = new System.Drawing.Size(1356, 139);
@@ -164,6 +178,9 @@
             // 
             // Panel_Saturation
             // 
+            this.Panel_Saturation.Controls.Add(this.Label_BlueValue);
+            this.Panel_Saturation.Controls.Add(this.Label_GreenValue);
+            this.Panel_Saturation.Controls.Add(this.Label_RedValue);
             this.Panel_Saturation.Controls.Add(this.NoFocusTrackBar_Blue);
             this.Panel_Saturation.Controls.Add(this.NoFocusTrackBar_Red);
             this.Panel_Saturation.Controls.Add(this.NoFocusTrackBar_Green);
@@ -291,10 +308,10 @@
             // 
             // PictureBox_Picture
             // 
-            this.PictureBox_Picture.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.PictureBox_Picture.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.PictureBox_Picture.Location = new System.Drawing.Point(0, -1);
             this.PictureBox_Picture.Name = "PictureBox_Picture";
-            this.PictureBox_Picture.Size = new System.Drawing.Size(1356, 360);
+            this.PictureBox_Picture.Size = new System.Drawing.Size(400, 360);
             this.PictureBox_Picture.TabIndex = 0;
             this.PictureBox_Picture.TabStop = false;
             this.PictureBox_Picture.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox_Picture_MouseDown);
@@ -435,6 +452,78 @@
             this.Panel_ColorDisplay.Size = new System.Drawing.Size(29, 23);
             this.Panel_ColorDisplay.TabIndex = 32;
             // 
+            // Label_RotationValue
+            // 
+            this.Label_RotationValue.AutoSize = true;
+            this.Label_RotationValue.Location = new System.Drawing.Point(370, 88);
+            this.Label_RotationValue.Name = "Label_RotationValue";
+            this.Label_RotationValue.Size = new System.Drawing.Size(22, 17);
+            this.Label_RotationValue.TabIndex = 33;
+            this.Label_RotationValue.Text = "0°";
+            // 
+            // Label_WidthValue
+            // 
+            this.Label_WidthValue.AutoSize = true;
+            this.Label_WidthValue.Location = new System.Drawing.Point(489, 88);
+            this.Label_WidthValue.Name = "Label_WidthValue";
+            this.Label_WidthValue.Size = new System.Drawing.Size(44, 17);
+            this.Label_WidthValue.TabIndex = 34;
+            this.Label_WidthValue.Text = "100%";
+            // 
+            // Label_HeightValue
+            // 
+            this.Label_HeightValue.AutoSize = true;
+            this.Label_HeightValue.Location = new System.Drawing.Point(630, 88);
+            this.Label_HeightValue.Name = "Label_HeightValue";
+            this.Label_HeightValue.Size = new System.Drawing.Size(44, 17);
+            this.Label_HeightValue.TabIndex = 35;
+            this.Label_HeightValue.Text = "100%";
+            // 
+            // Label_ContrastValue
+            // 
+            this.Label_ContrastValue.AutoSize = true;
+            this.Label_ContrastValue.Location = new System.Drawing.Point(781, 88);
+            this.Label_ContrastValue.Name = "Label_ContrastValue";
+            this.Label_ContrastValue.Size = new System.Drawing.Size(44, 17);
+            this.Label_ContrastValue.TabIndex = 36;
+            this.Label_ContrastValue.Text = "100%";
+            // 
+            // Label_BrightnessValue
+            // 
+            this.Label_BrightnessValue.AutoSize = true;
+            this.Label_BrightnessValue.Location = new System.Drawing.Point(937, 88);
+            this.Label_BrightnessValue.Name = "Label_BrightnessValue";
+            this.Label_BrightnessValue.Size = new System.Drawing.Size(44, 17);
+            this.Label_BrightnessValue.TabIndex = 37;
+            this.Label_BrightnessValue.Text = "100%";
+            // 
+            // Label_RedValue
+            // 
+            this.Label_RedValue.AutoSize = true;
+            this.Label_RedValue.Location = new System.Drawing.Point(36, 88);
+            this.Label_RedValue.Name = "Label_RedValue";
+            this.Label_RedValue.Size = new System.Drawing.Size(44, 17);
+            this.Label_RedValue.TabIndex = 35;
+            this.Label_RedValue.Text = "100%";
+            // 
+            // Label_GreenValue
+            // 
+            this.Label_GreenValue.AutoSize = true;
+            this.Label_GreenValue.Location = new System.Drawing.Point(141, 88);
+            this.Label_GreenValue.Name = "Label_GreenValue";
+            this.Label_GreenValue.Size = new System.Drawing.Size(44, 17);
+            this.Label_GreenValue.TabIndex = 36;
+            this.Label_GreenValue.Text = "100%";
+            // 
+            // Label_BlueValue
+            // 
+            this.Label_BlueValue.AutoSize = true;
+            this.Label_BlueValue.Location = new System.Drawing.Point(251, 88);
+            this.Label_BlueValue.Name = "Label_BlueValue";
+            this.Label_BlueValue.Size = new System.Drawing.Size(44, 17);
+            this.Label_BlueValue.TabIndex = 37;
+            this.Label_BlueValue.Text = "100%";
+            // 
             // Form_Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -507,6 +596,14 @@
         private System.Windows.Forms.Label Label_Pen;
         private System.Windows.Forms.NumericUpDown NumericUpDown_PenWidth;
         private System.Windows.Forms.Panel Panel_ColorDisplay;
+        private System.Windows.Forms.Label Label_BrightnessValue;
+        private System.Windows.Forms.Label Label_ContrastValue;
+        private System.Windows.Forms.Label Label_HeightValue;
+        private System.Windows.Forms.Label Label_WidthValue;
+        private System.Windows.Forms.Label Label_RotationValue;
+        private System.Windows.Forms.Label Label_BlueValue;
+        private System.Windows.Forms.Label Label_GreenValue;
+        private System.Windows.Forms.Label Label_RedValue;
     }
 }
 

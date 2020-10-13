@@ -47,6 +47,7 @@ namespace laba2
             PictureBox_Picture.Height = PictureBox_Picture.Image.Height;
             PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
             tmp.Dispose();
+            Label_RotationValue.Text = NoFocusTrackBar_Rotation.Value.ToString() + "°";
         }
         private Point BoundingBoxDimensions(Bitmap img, float angle)
         {
@@ -228,6 +229,7 @@ namespace laba2
                 }
                 PictureBox_Picture.Height = PictureBox_Picture.Image.Height;
                 PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
+                Panel_Tools.Enabled = true;
             }
         }
 
@@ -254,8 +256,20 @@ namespace laba2
             NoFocusTrackBar_Rotation.Value = 0;
             NoFocusTrackBar_Height.Value = 100;
             NoFocusTrackBar_Width.Value = 100;
+            NoFocusTrackBar_Contrast.Value = 100;
+            NoFocusTrackBar_Brightness.Value = 0;
+            NoFocusTrackBar_Red.Value = 100;
+            NoFocusTrackBar_Green.Value = 100;
+            NoFocusTrackBar_Blue.Value = 100;
+            Label_RedValue.Text ="100%";
+            Label_GreenValue.Text = "100%";
+            Label_BlueValue.Text = "100%";
+            Label_BrightnessValue.Text = "100%";
+            Label_ContrastValue.Text = "100%";
+            Label_WidthValue.Text = "100%";
+            Label_HeightValue.Text = "100%";
+            Label_RotationValue.Text = "0°";
             IsDrawing = false;
-            //потом сюда добавить трекбары для остальных трекбаров
         }
         Bitmap ResizeImage(Bitmap source, Size NewSize)
         {
@@ -281,6 +295,8 @@ namespace laba2
             tmp.Dispose();
             PictureBox_Picture.Height = PictureBox_Picture.Image.Height;
             PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
+            Label_WidthValue.Text = NoFocusTrackBar_Width.Value.ToString() + "%";
+            Label_HeightValue.Text = NoFocusTrackBar_Height.Value.ToString() + "%";
         }
 
         private void ToolStripMenuItem_SaveAs_Click(object sender, EventArgs e)
@@ -359,6 +375,7 @@ namespace laba2
             PictureBox_Picture.Image = TransformColor(tmp,matrix);
             PictureBox_Picture.Height = PictureBox_Picture.Image.Height;
             PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
+            Label_ContrastValue.Text = NoFocusTrackBar_Contrast.Value.ToString() + "%";
         }
         Bitmap TransformColor(Bitmap source, ColorMatrix matrix)
         {
@@ -385,6 +402,7 @@ namespace laba2
             PictureBox_Picture.Image = TransformColor(tmp, matrix);
             PictureBox_Picture.Height = PictureBox_Picture.Image.Height;
             PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
+            Label_BrightnessValue.Text = (NoFocusTrackBar_Brightness.Value+100).ToString() + "%";
         }
 
         private void NoFocusTrackBar_Saturation_Scroll(object sender, EventArgs e)
@@ -421,6 +439,9 @@ namespace laba2
             PictureBox_Picture.Image = TransformColor(tmp, matrix);
             PictureBox_Picture.Height = PictureBox_Picture.Image.Height;
             PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
+            Label_RedValue.Text = NoFocusTrackBar_Red.Value.ToString() + "%";
+            Label_GreenValue.Text = NoFocusTrackBar_Green.Value.ToString() + "%";
+            Label_BlueValue.Text = NoFocusTrackBar_Blue.Value.ToString() + "%";
         }
     }
     internal class NoFocusTrackBar : System.Windows.Forms.TrackBar
