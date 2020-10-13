@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace laba2
 {
@@ -21,15 +23,10 @@ namespace laba2
         int scale = 100;
         private void ComboBox_Zoom_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ComboBox_Zoom.SelectedItem != null)
-            {
-                scale = int.Parse(ComboBox_Zoom.SelectedItem.ToString());
-            }
         }
 
         private void Form_Main_Load(object sender, EventArgs e)
         {
-            ComboBox_Zoom.TabStop = false;
         }
         //добавить обработку исключений если не загружено изображение и исправить где-то тут утечку памяти, из-за которой при постоянном вращении потребление памяти возрастает до гигабайтов
         private void NoFocusTrackBar_Rotation_Scroll(object sender, EventArgs e)
@@ -225,6 +222,64 @@ namespace laba2
                 PictureBox_Picture.Height = PictureBox_Picture.Image.Height;
                 PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
             }
+        }
+
+        private void ToolStripMenuItem_SaveFile_Click(object sender, EventArgs e)
+        {
+            PictureBox_Picture.Image.Save(OpenFileDialog_Open.FileName);
+            ResetControls();
+        }
+
+        private void NoFocusTrackBar_Rotation_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Button_Apply_Click(object sender, EventArgs e)
+        {
+            ImageBuffer = PictureBox_Picture.Image;
+            ResetControls();
+
+        }
+        void ResetControls()
+        {
+            NoFocusTrackBar_Rotation.Value = 0;
+            NoFocusTrackBar_Height.Value = 100;
+            NoFocusTrackBar_Width.Value = 100;
+            //потом сюда добавить трекбары для остальных трекбаров
+        }
+        Bitmap ResizeImage(Bitmap source, Size NewSize)
+        {
+            Bitmap bm_source = new Bitmap(source);
+            Bitmap bm_dest = new Bitmap(NewSize.Width, NewSize.Height,
+                    PixelFormat.Format24bppRgb);
+            using (Graphics gr_dest = Graphics.FromImage(bm_dest))
+            {
+                gr_dest.CompositingQuality = CompositingQuality.HighQuality;
+                gr_dest.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                gr_dest.SmoothingMode = SmoothingMode.HighQuality;
+                gr_dest.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                gr_dest.DrawImage(bm_source, 0, 0, bm_dest.Width, bm_dest.Height);
+            }
+            return bm_dest;
+        }
+        private void NoFocusTrackBar_Size_Scroll(object sender, EventArgs e)
+        {
+            Bitmap tmp = new Bitmap(ImageBuffer);
+            PictureBox_Picture.Image = ResizeImage(tmp, new Size(ImageBuffer.Width*NoFocusTrackBar_Width.Value/100, ImageBuffer.Height*NoFocusTrackBar_Height.Value/100));
+            PictureBox_Picture.Height = PictureBox_Picture.Image.Height;
+            PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
+        }
+
+        private void ToolStripMenuItem_SaveAs_Click(object sender, EventArgs e)
+        {
+            if (SaveFileDialog_Save.ShowDialog() == DialogResult.OK && SaveFileDialog_Save.FileName.Length > 0)
+            {
+                //pictureBox.Image = Image.FromFile(ofd.FileName);
+                PictureBox_Picture.Image.Save(SaveFileDialog_Save.FileName);
+            }
+            OpenFileDialog_Open.FileName = SaveFileDialog_Save.FileName;
+            ResetControls();
         }
     }
     internal class NoFocusTrackBar : System.Windows.Forms.TrackBar

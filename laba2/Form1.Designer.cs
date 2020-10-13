@@ -33,6 +33,8 @@
             this.ToolStripMenuItem_SaveFile = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip_Menu = new System.Windows.Forms.MenuStrip();
             this.Panel_Tools = new System.Windows.Forms.Panel();
+            this.Label_Height = new System.Windows.Forms.Label();
+            this.Label_Width = new System.Windows.Forms.Label();
             this.Panel_Saturation = new System.Windows.Forms.Panel();
             this.Label_Saturation = new System.Windows.Forms.Label();
             this.Label_Red = new System.Windows.Forms.Label();
@@ -40,18 +42,19 @@
             this.Label_Green = new System.Windows.Forms.Label();
             this.Label_Brightness = new System.Windows.Forms.Label();
             this.Label_Contrast = new System.Windows.Forms.Label();
-            this.Button_Smaller = new System.Windows.Forms.Button();
-            this.Button_Bigger = new System.Windows.Forms.Button();
             this.Button_Color = new System.Windows.Forms.Button();
             this.Button_Draw = new System.Windows.Forms.Button();
             this.Label_Rotation = new System.Windows.Forms.Label();
-            this.ComboBox_Zoom = new System.Windows.Forms.ComboBox();
             this.Label_Zoom = new System.Windows.Forms.Label();
             this.ColorDialog_BrushColor = new System.Windows.Forms.ColorDialog();
             this.OpenFileDialog_Open = new System.Windows.Forms.OpenFileDialog();
             this.SaveFileDialog_Save = new System.Windows.Forms.SaveFileDialog();
             this.Panel_Picture = new System.Windows.Forms.Panel();
             this.PictureBox_Picture = new System.Windows.Forms.PictureBox();
+            this.Button_Apply = new System.Windows.Forms.Button();
+            this.ToolStripMenuItem_SaveAs = new System.Windows.Forms.ToolStripMenuItem();
+            this.NoFocusTrackBar_Height = new laba2.NoFocusTrackBar();
+            this.NoFocusTrackBar_Width = new laba2.NoFocusTrackBar();
             this.NoFocusTrackBar_Blue = new laba2.NoFocusTrackBar();
             this.NoFocusTrackBar_Red = new laba2.NoFocusTrackBar();
             this.NoFocusTrackBar_Green = new laba2.NoFocusTrackBar();
@@ -63,6 +66,8 @@
             this.Panel_Saturation.SuspendLayout();
             this.Panel_Picture.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Picture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Height)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Width)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Blue)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Red)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Green)).BeginInit();
@@ -75,23 +80,25 @@
             // 
             this.ToolStripMenuItem_File.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItem_OpenFile,
-            this.ToolStripMenuItem_SaveFile});
+            this.ToolStripMenuItem_SaveFile,
+            this.ToolStripMenuItem_SaveAs});
             this.ToolStripMenuItem_File.Name = "ToolStripMenuItem_File";
-            this.ToolStripMenuItem_File.Size = new System.Drawing.Size(46, 26);
+            this.ToolStripMenuItem_File.Size = new System.Drawing.Size(46, 24);
             this.ToolStripMenuItem_File.Text = "File";
             // 
             // ToolStripMenuItem_OpenFile
             // 
             this.ToolStripMenuItem_OpenFile.Name = "ToolStripMenuItem_OpenFile";
-            this.ToolStripMenuItem_OpenFile.Size = new System.Drawing.Size(153, 26);
+            this.ToolStripMenuItem_OpenFile.Size = new System.Drawing.Size(224, 26);
             this.ToolStripMenuItem_OpenFile.Text = "Open file";
             this.ToolStripMenuItem_OpenFile.Click += new System.EventHandler(this.ToolStripMenuItem_OpenFile_Click);
             // 
             // ToolStripMenuItem_SaveFile
             // 
             this.ToolStripMenuItem_SaveFile.Name = "ToolStripMenuItem_SaveFile";
-            this.ToolStripMenuItem_SaveFile.Size = new System.Drawing.Size(153, 26);
+            this.ToolStripMenuItem_SaveFile.Size = new System.Drawing.Size(224, 26);
             this.ToolStripMenuItem_SaveFile.Text = "Save file";
+            this.ToolStripMenuItem_SaveFile.Click += new System.EventHandler(this.ToolStripMenuItem_SaveFile_Click);
             // 
             // MenuStrip_Menu
             // 
@@ -100,7 +107,7 @@
             this.ToolStripMenuItem_File});
             this.MenuStrip_Menu.Location = new System.Drawing.Point(0, 0);
             this.MenuStrip_Menu.Name = "MenuStrip_Menu";
-            this.MenuStrip_Menu.Size = new System.Drawing.Size(1356, 30);
+            this.MenuStrip_Menu.Size = new System.Drawing.Size(1356, 28);
             this.MenuStrip_Menu.TabIndex = 25;
             this.MenuStrip_Menu.Text = "menuStrip1";
             // 
@@ -110,23 +117,43 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Panel_Tools.BackColor = System.Drawing.SystemColors.ControlLight;
             this.Panel_Tools.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Panel_Tools.Controls.Add(this.Button_Apply);
+            this.Panel_Tools.Controls.Add(this.Label_Height);
+            this.Panel_Tools.Controls.Add(this.Label_Width);
+            this.Panel_Tools.Controls.Add(this.NoFocusTrackBar_Height);
+            this.Panel_Tools.Controls.Add(this.NoFocusTrackBar_Width);
             this.Panel_Tools.Controls.Add(this.Panel_Saturation);
             this.Panel_Tools.Controls.Add(this.NoFocusTrackBar_Brightness);
             this.Panel_Tools.Controls.Add(this.NoFocusTrackBar_Rotation);
             this.Panel_Tools.Controls.Add(this.NoFocusTrackBar_Contrast);
             this.Panel_Tools.Controls.Add(this.Label_Brightness);
             this.Panel_Tools.Controls.Add(this.Label_Contrast);
-            this.Panel_Tools.Controls.Add(this.Button_Smaller);
-            this.Panel_Tools.Controls.Add(this.Button_Bigger);
             this.Panel_Tools.Controls.Add(this.Button_Color);
             this.Panel_Tools.Controls.Add(this.Button_Draw);
             this.Panel_Tools.Controls.Add(this.Label_Rotation);
-            this.Panel_Tools.Controls.Add(this.ComboBox_Zoom);
             this.Panel_Tools.Controls.Add(this.Label_Zoom);
             this.Panel_Tools.Location = new System.Drawing.Point(0, 32);
             this.Panel_Tools.Name = "Panel_Tools";
             this.Panel_Tools.Size = new System.Drawing.Size(1356, 139);
             this.Panel_Tools.TabIndex = 26;
+            // 
+            // Label_Height
+            // 
+            this.Label_Height.AutoSize = true;
+            this.Label_Height.Location = new System.Drawing.Point(629, 29);
+            this.Label_Height.Name = "Label_Height";
+            this.Label_Height.Size = new System.Drawing.Size(49, 17);
+            this.Label_Height.TabIndex = 28;
+            this.Label_Height.Text = "Height";
+            // 
+            // Label_Width
+            // 
+            this.Label_Width.AutoSize = true;
+            this.Label_Width.Location = new System.Drawing.Point(487, 29);
+            this.Label_Width.Name = "Label_Width";
+            this.Label_Width.Size = new System.Drawing.Size(44, 17);
+            this.Label_Width.TabIndex = 27;
+            this.Label_Width.Text = "Width";
             // 
             // Panel_Saturation
             // 
@@ -181,7 +208,7 @@
             // Label_Brightness
             // 
             this.Label_Brightness.AutoSize = true;
-            this.Label_Brightness.Location = new System.Drawing.Point(853, 19);
+            this.Label_Brightness.Location = new System.Drawing.Point(924, 19);
             this.Label_Brightness.Name = "Label_Brightness";
             this.Label_Brightness.Size = new System.Drawing.Size(75, 17);
             this.Label_Brightness.TabIndex = 14;
@@ -190,33 +217,15 @@
             // Label_Contrast
             // 
             this.Label_Contrast.AutoSize = true;
-            this.Label_Contrast.Location = new System.Drawing.Point(708, 19);
+            this.Label_Contrast.Location = new System.Drawing.Point(772, 19);
             this.Label_Contrast.Name = "Label_Contrast";
             this.Label_Contrast.Size = new System.Drawing.Size(61, 17);
             this.Label_Contrast.TabIndex = 13;
             this.Label_Contrast.Text = "Contrast";
             // 
-            // Button_Smaller
-            // 
-            this.Button_Smaller.Location = new System.Drawing.Point(73, 26);
-            this.Button_Smaller.Name = "Button_Smaller";
-            this.Button_Smaller.Size = new System.Drawing.Size(55, 45);
-            this.Button_Smaller.TabIndex = 12;
-            this.Button_Smaller.Text = "Size-";
-            this.Button_Smaller.UseVisualStyleBackColor = true;
-            // 
-            // Button_Bigger
-            // 
-            this.Button_Bigger.Location = new System.Drawing.Point(11, 26);
-            this.Button_Bigger.Name = "Button_Bigger";
-            this.Button_Bigger.Size = new System.Drawing.Size(56, 46);
-            this.Button_Bigger.TabIndex = 11;
-            this.Button_Bigger.Text = "Size+";
-            this.Button_Bigger.UseVisualStyleBackColor = true;
-            // 
             // Button_Color
             // 
-            this.Button_Color.Location = new System.Drawing.Point(330, 49);
+            this.Button_Color.Location = new System.Drawing.Point(196, 49);
             this.Button_Color.Name = "Button_Color";
             this.Button_Color.Size = new System.Drawing.Size(94, 23);
             this.Button_Color.TabIndex = 8;
@@ -225,7 +234,7 @@
             // 
             // Button_Draw
             // 
-            this.Button_Draw.Location = new System.Drawing.Point(330, 19);
+            this.Button_Draw.Location = new System.Drawing.Point(196, 16);
             this.Button_Draw.Name = "Button_Draw";
             this.Button_Draw.Size = new System.Drawing.Size(94, 23);
             this.Button_Draw.TabIndex = 7;
@@ -235,37 +244,20 @@
             // Label_Rotation
             // 
             this.Label_Rotation.AutoSize = true;
-            this.Label_Rotation.Location = new System.Drawing.Point(191, 0);
+            this.Label_Rotation.Location = new System.Drawing.Point(343, 12);
             this.Label_Rotation.Name = "Label_Rotation";
             this.Label_Rotation.Size = new System.Drawing.Size(81, 17);
             this.Label_Rotation.TabIndex = 2;
             this.Label_Rotation.Text = "Rotation (°)";
             // 
-            // ComboBox_Zoom
-            // 
-            this.ComboBox_Zoom.FormattingEnabled = true;
-            this.ComboBox_Zoom.Items.AddRange(new object[] {
-            "25",
-            "50",
-            "75",
-            "100",
-            "125",
-            "150"});
-            this.ComboBox_Zoom.Location = new System.Drawing.Point(482, 48);
-            this.ComboBox_Zoom.Name = "ComboBox_Zoom";
-            this.ComboBox_Zoom.Size = new System.Drawing.Size(121, 24);
-            this.ComboBox_Zoom.TabIndex = 1;
-            this.ComboBox_Zoom.Text = "100";
-            this.ComboBox_Zoom.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Zoom_SelectedIndexChanged);
-            // 
             // Label_Zoom
             // 
             this.Label_Zoom.AutoSize = true;
-            this.Label_Zoom.Location = new System.Drawing.Point(511, 19);
+            this.Label_Zoom.Location = new System.Drawing.Point(556, 6);
             this.Label_Zoom.Name = "Label_Zoom";
-            this.Label_Zoom.Size = new System.Drawing.Size(70, 17);
+            this.Label_Zoom.Size = new System.Drawing.Size(51, 17);
             this.Label_Zoom.TabIndex = 0;
-            this.Label_Zoom.Text = "Zoom (%)";
+            this.Label_Zoom.Text = "Resize";
             // 
             // OpenFileDialog_Open
             // 
@@ -281,6 +273,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Panel_Picture.AutoScroll = true;
+            this.Panel_Picture.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.Panel_Picture.Controls.Add(this.PictureBox_Picture);
             this.Panel_Picture.Location = new System.Drawing.Point(0, 178);
             this.Panel_Picture.Name = "Panel_Picture";
@@ -289,11 +282,51 @@
             // 
             // PictureBox_Picture
             // 
+            this.PictureBox_Picture.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.PictureBox_Picture.Location = new System.Drawing.Point(0, -1);
             this.PictureBox_Picture.Name = "PictureBox_Picture";
             this.PictureBox_Picture.Size = new System.Drawing.Size(1356, 360);
             this.PictureBox_Picture.TabIndex = 0;
             this.PictureBox_Picture.TabStop = false;
+            // 
+            // Button_Apply
+            // 
+            this.Button_Apply.Location = new System.Drawing.Point(11, 28);
+            this.Button_Apply.Name = "Button_Apply";
+            this.Button_Apply.Size = new System.Drawing.Size(148, 44);
+            this.Button_Apply.TabIndex = 29;
+            this.Button_Apply.Text = "Apply changes";
+            this.Button_Apply.UseVisualStyleBackColor = true;
+            this.Button_Apply.Click += new System.EventHandler(this.Button_Apply_Click);
+            // 
+            // ToolStripMenuItem_SaveAs
+            // 
+            this.ToolStripMenuItem_SaveAs.Name = "ToolStripMenuItem_SaveAs";
+            this.ToolStripMenuItem_SaveAs.Size = new System.Drawing.Size(224, 26);
+            this.ToolStripMenuItem_SaveAs.Text = "Save as...";
+            this.ToolStripMenuItem_SaveAs.Click += new System.EventHandler(this.ToolStripMenuItem_SaveAs_Click);
+            // 
+            // NoFocusTrackBar_Height
+            // 
+            this.NoFocusTrackBar_Height.Location = new System.Drawing.Point(599, 49);
+            this.NoFocusTrackBar_Height.Maximum = 200;
+            this.NoFocusTrackBar_Height.Minimum = 1;
+            this.NoFocusTrackBar_Height.Name = "NoFocusTrackBar_Height";
+            this.NoFocusTrackBar_Height.Size = new System.Drawing.Size(104, 56);
+            this.NoFocusTrackBar_Height.TabIndex = 26;
+            this.NoFocusTrackBar_Height.Value = 100;
+            this.NoFocusTrackBar_Height.Scroll += new System.EventHandler(this.NoFocusTrackBar_Size_Scroll);
+            // 
+            // NoFocusTrackBar_Width
+            // 
+            this.NoFocusTrackBar_Width.Location = new System.Drawing.Point(456, 49);
+            this.NoFocusTrackBar_Width.Maximum = 200;
+            this.NoFocusTrackBar_Width.Minimum = 1;
+            this.NoFocusTrackBar_Width.Name = "NoFocusTrackBar_Width";
+            this.NoFocusTrackBar_Width.Size = new System.Drawing.Size(104, 56);
+            this.NoFocusTrackBar_Width.TabIndex = 25;
+            this.NoFocusTrackBar_Width.Value = 100;
+            this.NoFocusTrackBar_Width.Scroll += new System.EventHandler(this.NoFocusTrackBar_Size_Scroll);
             // 
             // NoFocusTrackBar_Blue
             // 
@@ -321,24 +354,25 @@
             // 
             // NoFocusTrackBar_Brightness
             // 
-            this.NoFocusTrackBar_Brightness.Location = new System.Drawing.Point(836, 49);
+            this.NoFocusTrackBar_Brightness.Location = new System.Drawing.Point(904, 49);
             this.NoFocusTrackBar_Brightness.Name = "NoFocusTrackBar_Brightness";
             this.NoFocusTrackBar_Brightness.Size = new System.Drawing.Size(104, 56);
             this.NoFocusTrackBar_Brightness.TabIndex = 20;
             // 
             // NoFocusTrackBar_Rotation
             // 
-            this.NoFocusTrackBar_Rotation.Location = new System.Drawing.Point(178, 29);
+            this.NoFocusTrackBar_Rotation.Location = new System.Drawing.Point(332, 49);
             this.NoFocusTrackBar_Rotation.Maximum = 361;
             this.NoFocusTrackBar_Rotation.Minimum = -1;
             this.NoFocusTrackBar_Rotation.Name = "NoFocusTrackBar_Rotation";
             this.NoFocusTrackBar_Rotation.Size = new System.Drawing.Size(104, 56);
             this.NoFocusTrackBar_Rotation.TabIndex = 6;
             this.NoFocusTrackBar_Rotation.Scroll += new System.EventHandler(this.NoFocusTrackBar_Rotation_Scroll);
+            this.NoFocusTrackBar_Rotation.Leave += new System.EventHandler(this.NoFocusTrackBar_Rotation_Leave);
             // 
             // NoFocusTrackBar_Contrast
             // 
-            this.NoFocusTrackBar_Contrast.Location = new System.Drawing.Point(677, 49);
+            this.NoFocusTrackBar_Contrast.Location = new System.Drawing.Point(748, 49);
             this.NoFocusTrackBar_Contrast.Name = "NoFocusTrackBar_Contrast";
             this.NoFocusTrackBar_Contrast.Size = new System.Drawing.Size(104, 56);
             this.NoFocusTrackBar_Contrast.TabIndex = 19;
@@ -363,6 +397,8 @@
             this.Panel_Saturation.PerformLayout();
             this.Panel_Picture.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox_Picture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Height)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Width)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Blue)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Red)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NoFocusTrackBar_Green)).EndInit();
@@ -395,17 +431,20 @@
         private System.Windows.Forms.Label Label_Saturation;
         private System.Windows.Forms.Label Label_Brightness;
         private System.Windows.Forms.Label Label_Contrast;
-        private System.Windows.Forms.Button Button_Smaller;
-        private System.Windows.Forms.Button Button_Bigger;
         private System.Windows.Forms.Button Button_Color;
         private System.Windows.Forms.Button Button_Draw;
-        private System.Windows.Forms.ComboBox ComboBox_Zoom;
         private System.Windows.Forms.Label Label_Zoom;
         private System.Windows.Forms.ColorDialog ColorDialog_BrushColor;
         private System.Windows.Forms.OpenFileDialog OpenFileDialog_Open;
         private System.Windows.Forms.SaveFileDialog SaveFileDialog_Save;
         private System.Windows.Forms.Panel Panel_Picture;
         private System.Windows.Forms.PictureBox PictureBox_Picture;
+        private System.Windows.Forms.Label Label_Height;
+        private System.Windows.Forms.Label Label_Width;
+        private NoFocusTrackBar NoFocusTrackBar_Height;
+        private NoFocusTrackBar NoFocusTrackBar_Width;
+        private System.Windows.Forms.Button Button_Apply;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem_SaveAs;
     }
 }
 
