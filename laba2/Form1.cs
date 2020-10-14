@@ -29,6 +29,11 @@ namespace laba2
 
         private void Form_Main_Load(object sender, EventArgs e)
         {
+            MenuStrip_Menu.Items.Add(ToolStripMenuItem_File);
+            ToolStripMenuItem_File.DropDownItems.Add(ToolStripMenuItem_OpenFile);
+            ToolStripMenuItem_File.DropDownItems.Add(ToolStripMenuItem_SaveFile);
+            ToolStripMenuItem_File.DropDownItems.Add(ToolStripMenuItem_SaveAs);
+
         }
         //добавить обработку исключений если не загружено изображение и исправить где-то тут утечку памяти, из-за которой при постоянном вращении потребление памяти возрастает до гигабайтов
         private void NoFocusTrackBar_Rotation_Scroll(object sender, EventArgs e)
@@ -229,6 +234,7 @@ namespace laba2
                 }
                 PictureBox_Picture.Height = PictureBox_Picture.Image.Height;
                 PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
+                ActiveForm.Text = OpenFileDialog_Open.FileName + " - Image Editor";
                 Panel_Tools.Enabled = true;
             }
         }
@@ -236,6 +242,7 @@ namespace laba2
         private void ToolStripMenuItem_SaveFile_Click(object sender, EventArgs e)
         {
             PictureBox_Picture.Image.Save(OpenFileDialog_Open.FileName);
+            ImageBuffer = (Image)PictureBox_Picture.Image.Clone();
             ResetControls();
         }
 
@@ -307,6 +314,8 @@ namespace laba2
                 PictureBox_Picture.Image.Save(SaveFileDialog_Save.FileName);
             }
             OpenFileDialog_Open.FileName = SaveFileDialog_Save.FileName;
+            ImageBuffer = (Image)PictureBox_Picture.Image.Clone();
+            ActiveForm.Text = OpenFileDialog_Open.FileName + " - Image Editor";
             ResetControls();
         }
 

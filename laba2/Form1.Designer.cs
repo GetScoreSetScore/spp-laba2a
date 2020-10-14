@@ -529,7 +529,7 @@
             this.Controls.Add(this.Panel_Tools);
             this.Controls.Add(this.MenuStrip_Menu);
             this.Name = "Form_Main";
-            this.Text = "Form1";
+            this.Text = "No file opened - Image editor";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form_Main_Load);
             this.Panel_Tools.ResumeLayout(false);
