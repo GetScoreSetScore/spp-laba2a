@@ -349,6 +349,10 @@ namespace laba2
             }
         }
 
+        private void Button_Draw_Click(object sender, EventArgs e)
+        {
+            IsDrawing = !IsDrawing;
+        }
 
         private void Button_Color_Click(object sender, EventArgs e)
         {
@@ -438,20 +442,6 @@ namespace laba2
             Label_RedValue.Text = NoFocusTrackBar_Red.Value.ToString() + "%";
             Label_GreenValue.Text = NoFocusTrackBar_Green.Value.ToString() + "%";
             Label_BlueValue.Text = NoFocusTrackBar_Blue.Value.ToString() + "%";
-        }
-
-        private void Panel_Brush_Click(object sender, EventArgs e)
-        {
-            IsDrawing = !IsDrawing;
-        }
-
-        private void Panel_Color_Click(object sender, EventArgs e)
-        {
-            if (ColorDialog_BrushColor.ShowDialog() == DialogResult.OK)
-            {
-                CurrentColor = ColorDialog_BrushColor.Color;
-                Panel_ColorDisplay.BackColor = CurrentColor;
-            }
         }
     }
     internal class NoFocusTrackBar : System.Windows.Forms.TrackBar
