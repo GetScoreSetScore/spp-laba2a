@@ -168,16 +168,16 @@
             this.Panel_Color.BackgroundImage = global::laba2.Properties.Resources.palette;
             this.Panel_Color.Location = new System.Drawing.Point(201, 8);
             this.Panel_Color.Name = "Panel_Color";
-            this.Panel_Color.Size = new System.Drawing.Size(54, 48);
+            this.Panel_Color.Size = new System.Drawing.Size(60, 60);
             this.Panel_Color.TabIndex = 40;
             this.Panel_Color.Click += new System.EventHandler(this.Panel_Color_Click);
             // 
             // Panel_Brush
             // 
             this.Panel_Brush.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Panel_Brush.BackgroundImage")));
-            this.Panel_Brush.Location = new System.Drawing.Point(141, 8);
+            this.Panel_Brush.Location = new System.Drawing.Point(135, 8);
             this.Panel_Brush.Name = "Panel_Brush";
-            this.Panel_Brush.Size = new System.Drawing.Size(53, 48);
+            this.Panel_Brush.Size = new System.Drawing.Size(60, 60);
             this.Panel_Brush.TabIndex = 39;
             this.Panel_Brush.Click += new System.EventHandler(this.Panel_Brush_Click);
             // 
@@ -229,9 +229,9 @@
             // Panel_ColorDisplay
             // 
             this.Panel_ColorDisplay.BackColor = System.Drawing.SystemColors.MenuText;
-            this.Panel_ColorDisplay.Location = new System.Drawing.Point(261, 8);
+            this.Panel_ColorDisplay.Location = new System.Drawing.Point(267, 8);
             this.Panel_ColorDisplay.Name = "Panel_ColorDisplay";
-            this.Panel_ColorDisplay.Size = new System.Drawing.Size(50, 48);
+            this.Panel_ColorDisplay.Size = new System.Drawing.Size(60, 60);
             this.Panel_ColorDisplay.TabIndex = 32;
             // 
             // Label_Pen
