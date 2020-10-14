@@ -300,7 +300,6 @@ namespace laba2
             PictureBox_Picture.Width = PictureBox_Picture.Image.Width;
             Label_BrightnessValue.Text = (NoFocusTrackBar_Brightness.Value + 100).ToString() + "%";
         }
-
         private void NoFocusTrackBar_Saturation_Scroll(object sender, EventArgs e)
         {
             float rwgt = 0.3086f;

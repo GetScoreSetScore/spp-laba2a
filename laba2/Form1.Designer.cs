@@ -439,7 +439,6 @@
             this.NoFocusTrackBar_Rotation.Size = new System.Drawing.Size(104, 56);
             this.NoFocusTrackBar_Rotation.TabIndex = 6;
             this.NoFocusTrackBar_Rotation.Scroll += new System.EventHandler(this.NoFocusTrackBar_Rotation_Scroll);
-            this.NoFocusTrackBar_Rotation.Leave += new System.EventHandler(this.NoFocusTrackBar_Rotation_Leave);
             // 
             // NoFocusTrackBar_Contrast
             // 
